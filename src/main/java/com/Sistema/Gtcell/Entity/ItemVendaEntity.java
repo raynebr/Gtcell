@@ -14,7 +14,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="item_venda")
+@Table(name ="item_venda")
 public class ItemVendaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -24,6 +24,7 @@ public class ItemVendaEntity {
     @JoinColumn
     private VendaEntity venda_id;
     private int quantidade;
+    @Column(name = "preco_unitario")
     private BigDecimal precoUnitario;
     private BigDecimal subTotal;
 }
