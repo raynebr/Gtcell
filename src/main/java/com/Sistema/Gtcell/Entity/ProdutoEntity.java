@@ -1,9 +1,27 @@
 package com.Sistema.Gtcell.Entity;
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
+
+
+import java.math.BigDecimal;
+import java.util.UUID;
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "tb_produto")
 public class ProdutoEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String nome;
     private String descricao;
@@ -12,5 +30,6 @@ public class ProdutoEntity {
     private int qtdEstoque;
     private String codigo;
     private Boolean ativo;
+    @JoinColumn(name = "categoriaProduto")
     private CategoriaEntity categoria;
 }
