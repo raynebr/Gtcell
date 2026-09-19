@@ -13,17 +13,15 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "cliente")
-public class ClienteEntity extends UsuarioEntity{
+@Table(name = "tb_cliente")
+public class ClienteEntity extends UsuarioEntity {
 
-    @Id
-   @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-   @Column(length = 150)
+    @Column(length = 150)
     private String nome;
-   @Column(length = 20)
-    private String telefone;
-   @Column(length = 18)
-    private String cpf;
 
+    @Column(length = 20)
+    private String telefone;
+
+    @Column(length = 18, unique = true)
+    private String cpf;
 }

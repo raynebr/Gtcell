@@ -21,10 +21,13 @@ public class MovimentacaoEstoque {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+    @ManyToOne
+    @JoinColumn(name = "produto_id")
     private ProdutoEntity produto;
     private int quantidade;
     private TipoMovimentacao tipoMovimentacao;
     private LocalDateTime data;
     @JoinColumn(name = "funcionario_id")
+    @OneToOne
     private FuncionarioEntity funcionario;
 }

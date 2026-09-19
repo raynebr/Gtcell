@@ -2,6 +2,7 @@ package com.Sistema.Gtcell.Service;
 
 
 import com.Sistema.Gtcell.Entity.CategoriaEntity;
+import com.Sistema.Gtcell.Exception.CategoriaJaCadastrada;
 import com.Sistema.Gtcell.Repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class CategoriaService {
     public CategoriaEntity cadastrar(CategoriaEntity categoria) {
 
         if (categoriaRepository.existsByNome(categoria.getNome())) {
-            throw new IllegalArgumentException("Categoria já cadastrada");
+            throw new CategoriaJaCadastrada("Categoria já cadastrada");
         }
 
         return categoriaRepository.save(categoria);

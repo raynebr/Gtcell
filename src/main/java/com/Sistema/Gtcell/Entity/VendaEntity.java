@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
 @Entity
 @Getter
 @Setter
@@ -19,17 +20,32 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "tb_venda")
 public class VendaEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    // Um funcionário pode realizar várias vendas
+    @ManyToOne
     @JoinColumn(name = "funcionario_id")
     private FuncionarioEntity funcionario;
+
+    // Um cliente pode possuir várias vendas
+    @ManyToOne
     @JoinColumn(name = "cliente_id")
     private ClienteEntity cliente;
+
     private LocalDateTime data;
+
     private BigDecimal total;
+
     private BigDecimal desconto;
+
     private FormaDePagamentoEnum formaDePagamento;
+
     private StatusVendaEnum statusVenda;
-    private List<ItemVendaEntity> itemVendaEntitylist;
+
+    // Uma venda possui vários itens
+    @OneToMany(mappedBy = "venda")
+    private List<ItemVendaEntity> itemVendaEntityList;
 }

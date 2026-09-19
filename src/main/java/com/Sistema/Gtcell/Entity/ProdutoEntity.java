@@ -9,10 +9,6 @@ import lombok.Setter;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-
-
-import java.math.BigDecimal;
-import java.util.UUID;
 @Entity
 @Getter
 @Setter
@@ -20,16 +16,25 @@ import java.util.UUID;
 @AllArgsConstructor
 @Table(name = "tb_produto")
 public class ProdutoEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     private String nome;
+
     private String descricao;
+
     private BigDecimal precoCompra;
+
     private BigDecimal precoVenda;
+
     private int qtdEstoque;
+
     private String codigo;
-    private Boolean ativo;
-    @JoinColumn(name = "categoriaProduto")
+
+    // Muitos produtos podem pertencer a uma mesma categoria
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
     private CategoriaEntity categoria;
 }

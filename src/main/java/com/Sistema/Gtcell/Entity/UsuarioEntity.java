@@ -15,11 +15,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_usuario")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class UsuarioEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    private String nome;
+
     @Column(unique = true)
     private String email;
+
     private String senha;
 }
