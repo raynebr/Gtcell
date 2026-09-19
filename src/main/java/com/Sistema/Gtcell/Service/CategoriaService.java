@@ -2,7 +2,9 @@ package com.Sistema.Gtcell.Service;
 
 
 import com.Sistema.Gtcell.Entity.CategoriaEntity;
+import com.Sistema.Gtcell.Exception.CategoriaComMesmoNome;
 import com.Sistema.Gtcell.Exception.CategoriaJaCadastrada;
+import com.Sistema.Gtcell.Exception.CategoriaNaoEncontrada;
 import com.Sistema.Gtcell.Repository.CategoriaRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +41,7 @@ public class CategoriaService {
 
         return categoriaRepository.findById(id)
                 .orElseThrow(() ->
-                        new IllegalArgumentException("Categoria não encontrada"));
+                        new CategoriaNaoEncontrada("Categoria não encontrada"));
     }
 
     // Atualizar
@@ -50,7 +52,7 @@ public class CategoriaService {
         if (categoriaRepository.existsByNome(categoria.getNome())
                 && !categoriaExistente.getNome().equals(categoria.getNome())) {
 
-            throw new IllegalArgumentException(
+            throw new CategoriaComMesmoNome(
                     "Já existe uma categoria com esse nome"
             );
         }

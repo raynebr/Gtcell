@@ -18,8 +18,8 @@ import java.util.UUID;
 public class ProdutoEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nome;
 
@@ -30,8 +30,6 @@ public class ProdutoEntity {
     private BigDecimal precoVenda;
 
     private int qtdEstoque;
-
-    private String codigo;
 
     // Muitos produtos podem pertencer a uma mesma categoria
     @ManyToOne

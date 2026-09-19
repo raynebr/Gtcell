@@ -1,13 +1,12 @@
 package com.Sistema.Gtcell.Dto.Request;
 
+import com.Sistema.Gtcell.Entity.CategoriaEntity;
+
 import java.math.BigDecimal;
 
 public record ProdutoRequest(
         String nome,
-        String descricao,
         BigDecimal precoCompra,
         BigDecimal precoVenda,
-        int qtdEstoque,
-        String codigo
-) {
-}
+        String categoriaNome
+) {}
