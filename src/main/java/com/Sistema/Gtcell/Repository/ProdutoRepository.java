@@ -1,5 +1,6 @@
 package com.Sistema.Gtcell.Repository;
 
+import com.Sistema.Gtcell.Entity.CategoriaEntity;
 import com.Sistema.Gtcell.Entity.ProdutoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,4 +11,5 @@ import java.util.UUID;
 public interface ProdutoRepository extends JpaRepository<ProdutoEntity, UUID> {
 
    boolean existsByNome(String nome);
+   Optional<CategoriaEntity> findByid(Long id);
 }

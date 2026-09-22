@@ -5,10 +5,9 @@ import com.Sistema.Gtcell.Dto.Response.ProdutoResponse;
 import com.Sistema.Gtcell.Entity.ProdutoEntity;
 import com.Sistema.Gtcell.Service.ProdutoService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/Produto")
@@ -46,4 +45,20 @@ public class ProdutoController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping
+    public ResponseEntity<List<ProdutoResponse>> listar(){
+        List<ProdutoResponse> response =
+                produtoService.listar()
+                        .stream()
+                        .map(produto -> new ProdutoResponse(
+                                produto.getId(),
+                                produto.getNome(),
+                                produto.getPrecoCompra(),
+                                produto.getPrecoVenda(),
+                                produto.getCategoria()
+                        )).toList();
+        return ResponseEntity.ok(response);
+    }
+    
 }

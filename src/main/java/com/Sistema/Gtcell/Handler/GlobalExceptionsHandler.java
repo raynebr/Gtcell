@@ -1,11 +1,8 @@
 package com.Sistema.Gtcell.Handler;
 
 
-import com.Sistema.Gtcell.Exception.CategoriaComMesmoNome;
-import com.Sistema.Gtcell.Exception.CategoriaJaCadastrada;
+import com.Sistema.Gtcell.Exception.*;
 
-import com.Sistema.Gtcell.Exception.CategoriaNaoEncontrada;
-import com.Sistema.Gtcell.Exception.ProdutoJaCadastrado;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -61,6 +58,17 @@ public class GlobalExceptionsHandler {
         ErroResposta erro =new ErroResposta(
                 HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 "Categoria não encontrada",
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(erro);
+    }
+    @ExceptionHandler(ProdutoNaoEncontrado.class)
+    public ResponseEntity<ErroResposta> tratarProdutonaoEncontrado(
+            ProdutoNaoEncontrado ex){
+        ErroResposta erro = new ErroResposta(
+                HttpStatus.UNPROCESSABLE_ENTITY.value(),
+                "Produttto Não Encontrado",
                 ex.getMessage(),
                 LocalDateTime.now()
         );
